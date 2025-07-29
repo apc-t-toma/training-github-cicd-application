@@ -1,0 +1,10 @@
+# All ignore
+*
+!.gitignore
+!*.md
+
+!/**/
+!*.tf
+!*.tfstate
+!*.tfstate.*
+!*.tfvars
