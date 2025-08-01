@@ -14,6 +14,6 @@ variable "tags" {
   type        = map(string)
   description = "すべてのリソースに適用されるタグ"
   default = {
-    owner = "t_toma"
+    Owner = "t_toma"
   }
 }

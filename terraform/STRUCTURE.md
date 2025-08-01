@@ -2,7 +2,7 @@
 
 ## プロジェクト概要
 
-このTerraformプロジェクトは、Azure上でJava 8ベースのWebアプリケーションを実行するためのApp Serviceインフラストラクチャを定義しています。シンプルで保守しやすく、スケーラブルな設計となっています。
+このTerraformプロジェクトは、Azure上で.NET 8 (LTS)ベースのWebアプリケーションを実行するためのApp Serviceインフラストラクチャを定義しています。シンプルで保守しやすく、スケーラブルな設計となっています。
 
 ## アーキテクチャ概要
 
@@ -10,7 +10,7 @@
 
 ### アプリケーション提供層
 
-**Azure App Service**を使用してJava 8アプリケーションをホストし、**デプロイメントスロット**により開発環境と本番環境の分離を実現しています。HTTPSを強制することでセキュアな通信を保証し、Premium V2プランによる高いパフォーマンスを提供します。
+**Azure App Service**を使用して.NET 8 (LTS)アプリケーションをホストし、**デプロイメントスロット**により開発環境と本番環境の分離を実現しています。HTTPSを強制することでセキュアな通信を保証し、Standard S1プランによる高いパフォーマンスを提供します。
 
 ### 基盤管理
 
@@ -34,8 +34,8 @@ terraform/
 │
 └── app_service/               # App Serviceリソース
     ├── service_plan.tf        # App Service Plan
-    ├── linux_web_app.tf       # Linux Web App
-    ├── linux_web_app_slot.tf  # デプロイメントスロット
+    ├── windows_web_app.tf     # Windows Web App
+    ├── windows_web_app_slot.tf # デプロイメントスロット
     └── variables.tf           # App Service変数
 ```
 
@@ -54,14 +54,15 @@ terraform/
 **目的**: Webアプリケーションのホスティングとデプロイメント
 
 - **App Service Plan**:
-  - Premium V2 P1v2 SKU
-  - Linux OS
+  - Standard S1 SKU
+  - Windows OS
   - ゾーン冗長無効（開発環境構成）
-- **Linux Web App**:
-  - Java 8ランタイム
-  - Java SEウェブサーバー
+- **Windows Web App**:
+  - .NET 8 (LTS)ランタイム
   - HTTPS強制設定
   - HTTP/2有効化
+  - 継続的なデプロイ無効化
+  - Application Insights無効化
 - **デプロイメントスロット（develop）**:
   - 本番環境と同一設定
   - 設定の複製なし

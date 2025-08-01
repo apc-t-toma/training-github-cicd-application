@@ -1,10 +1,10 @@
 # App Service Plan
 resource "azurerm_service_plan" "app_service_plan" {
-  name                   = "ASP-apc-training-t-toma"
+  name                   = "appplan-windows-t-t-ma"
   location               = var.location
   resource_group_name    = var.resource_group.name
-  os_type                = "Linux"
-  sku_name               = "P1v2"
+  os_type                = "Windows"
+  sku_name               = "S1"
   zone_balancing_enabled = false
   tags                   = var.tags
 }
